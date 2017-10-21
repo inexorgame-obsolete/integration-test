@@ -1,0 +1,14 @@
+# Test against the latest version of this Node.js version
+environment:
+  nodejs_version: "7"
+  os: "Unstable"
+
+install:
+  # Get the latest stable version of Node.js or io.js
+  - ps: Install-Product node $env:nodejs_version
+  - npm i -g @inexorgame/inexor-flex
+
+test_script:
+  - inexor-flex release fetch
+  - inexor-flex release install 0.8.10-alpha
+  - inexor-flex client start
