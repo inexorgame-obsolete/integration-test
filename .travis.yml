@@ -1,0 +1,17 @@
+env:
+  - tag: 0.8.10-alpha
+
+language: node_js
+node_js:
+  - "7"
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+script:
+  - npm install @inexorgame/inexor-flex
+  - inexor-flex release fetch
+  - inexor-flex release install ${tag}
+  - inexor-flex client start
